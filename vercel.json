@@ -1,13 +1,33 @@
+// {
+//     "builds": [{
+//         "src": "Universidad/wsgi.py",
+//         "use": "@vercel/python",
+//         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+//     }],
+//     "routes": [
+//         {
+//             "src": "/(.*)",
+//             "dest": "Universidad/wsgi.py"
+//         }
+//     ]
+// }
+
 {
-    "builds": [{
-        "src": "Universidad/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    }],
+    "version": 2,
+    "builds": [
+      {
+        "src": "vercel_build_staticfiles.sh",
+        "use": "python3"
+      }
+    ],
+    "env": {
+      "DEBUG": "False",
+      "ALLOWED_HOSTS": [".vercel.app"]
+    },
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "Universidad/wsgi.py"
-        }
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
     ]
-}
+  }
