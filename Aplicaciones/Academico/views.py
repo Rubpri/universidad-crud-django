@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import Curso
+from django.contrib import messages
 
 # Create your views here.
 
 
 def home(request):
     cursosListados = Curso.objects.all()
-
     return render(request, "gestionCursos.html", {"cursos": cursosListados})
 
 
@@ -17,6 +17,8 @@ def registrarCurso(request):
 
     curso = Curso.objects.create(
         codigo=codigo, nombre=nombre, creditos=creditos)
+
+    messages.success(request, f'¡{codigo} {nombre} añadido!')
 
     return redirect('/')
 
@@ -37,11 +39,15 @@ def editarCurso(request):
     curso.creditos = creditos
     curso.save()
 
+    messages.success(request, f'¡{codigo} editado!')
+
     return redirect('/')
 
 
 def eliminarCurso(request, codigo):
     curso = Curso.objects.get(codigo=codigo)
     curso.delete()
+
+    messages.success(request, f'¡{codigo} eliminado!')
 
     return redirect('/')
