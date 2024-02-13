@@ -20,7 +20,7 @@
   "routes": [
     {
     "src": "/static/(.*)",
-    "dest": "/static/$1"   // cambiar por 1 en vez de l
+    "dest": "/static/$1"
     },
     {
       "src": "/(.*)",
