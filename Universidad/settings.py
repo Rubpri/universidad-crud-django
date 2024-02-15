@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -76,12 +75,20 @@ WSGI_APPLICATION = 'Universidad.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': 'Universidad.db',
-#     }
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "myfirstawsdb",
+        "USER": "postgres",
+        "PASSWORD": "hola1234",
+        "HOST": "db-tutorial-1.cz0ca4seei1n.eu-west-3.rds.amazonaws.com",
+        "PORT": "5432",
+    },
+    'old_default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'Universidad.db',
+    }
+}
 
 # DATABASES = {
 #     'default': {
@@ -93,20 +100,6 @@ WSGI_APPLICATION = 'Universidad.wsgi.application'
 #         'PASSWORD': ''
 #     }
 # }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'HOST': 'viaduct.proxy.rlwy.net',
-#         'PORT': 54644,
-#         'NAME': 'pgdata',
-#         'USER': 'postgres',
-#         'PASSWORD': '4c2fagbdfdBBeB5AgDBcAeF*gGdD4geA'
-#     }
-# }
-
-
 
 
 # Password validation
