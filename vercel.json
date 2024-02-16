@@ -2,10 +2,10 @@
     "builds": [{
       "src": "Universidad/wsgi.py",
       "use": "@ardnt/vercel-python-wsgi",
+      "output": "dist",
       "config": {
         "maxLambdaSize": "15mb",
-        "runtime": "python3.9",
-        "output": "dist" 
+        "runtime": "python3.9"
       }
     }],
     "routes": [
