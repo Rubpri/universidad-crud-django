@@ -4,7 +4,8 @@
       "use": "@ardnt/vercel-python-wsgi",
       "config": {
         "maxLambdaSize": "15mb",
-        "runtime": "python3.9" 
+        "runtime": "python3.9",
+        "output": "Universidad/wsgi.py" 
       }
     }],
     "routes": [
