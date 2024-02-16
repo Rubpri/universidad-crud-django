@@ -22,14 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-=cldztbc4jg&xl0!x673!*v2_=p$$eu)=7*f#d0#zs$44xx-h^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'vercel.app', '*.vercel.app']
-
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -81,14 +81,25 @@ WSGI_APPLICATION = 'Universidad.wsgi.app'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": config('DATABASE_URL'),
+#         "NAME": config('DATABASE_NAME'),
+#         "USER": config('DATABASE_USER'),
+#         "PASSWORD": config('DATABASE_PASSWORD'),
+#         "HOST": config('DATABASE_HOST'),
+#         "PORT": config('DATABASE_PORT'),
+#     },
+# }
+
 DATABASES = {
     "default": {
-        "ENGINE": config('DATABASE_URL'),
-        "NAME": config('DATABASE_NAME'),
-        "USER": config('DATABASE_USER'),
-        "PASSWORD": config('DATABASE_PASSWORD'),
-        "HOST": config('DATABASE_HOST'),
-        "PORT": config('DATABASE_PORT'),
+        "ENGINE": 'django.db.backends.postgresql',
+        "NAME": 'myfirstawsdb',
+        "USER": 'postgres',
+        "PASSWORD": 'hola1234',
+        "HOST": 'db-tutorial-1.cz0ca4seei1n.eu-west-3.rds.amazonaws.com',
+        "PORT": '5432',
     },
 }
 
