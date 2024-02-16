@@ -5,7 +5,7 @@
       "config": {
         "maxLambdaSize": "15mb",
         "runtime": "python3.9",
-        "output": "Universidad/wsgi.py" 
+        "output": "dist" 
       }
     }],
     "routes": [
