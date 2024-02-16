@@ -1,13 +1,14 @@
 {
-    "builds": [{
-      "src": "Universidad/wsgi.py",
-      "use": "@ardnt/vercel-python-wsgi",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.9",
-        "entrypoint": "Universidad/wsgi.py"
+    "builds": [
+      {
+        "src": "Universidad/wsgi.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "15mb",
+          "runtime": "python3.9"
+        }
       }
-    }],
+    ],
     "routes": [
       {
         "src": "/(.*)",
