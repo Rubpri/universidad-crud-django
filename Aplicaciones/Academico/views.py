@@ -7,7 +7,7 @@ from django.contrib import messages
 
 def home(request):
     cursosListados = Curso.objects.all()
-    return render(request, "gestionCursos.html", {"cursos": cursosListados})
+    return render(request, "gestionCursos.htm", {"cursos": cursosListados})
 
 
 def registrarCurso(request):
