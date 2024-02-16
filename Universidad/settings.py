@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG')
 
-# ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
-ALLOWED_HOSTS = ['django-crud-bootstrap.vercel.app', '*.vercel.app', 'django-crud-bootstrap-hfjjha8al-rubpris-projects.vercel.app', 'django-crud-bootstrap-we6p4s3ds-rubpris-projects.vercel.app']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
+
 
 
 # Application definition
