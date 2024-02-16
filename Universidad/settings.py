@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5l5t7q-j9@mot5i%by21t4zbd(4^xrn3tw^5xd-sw#3eup-ckg'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
 # Application definition
 
@@ -77,29 +78,14 @@ WSGI_APPLICATION = 'Universidad.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "myfirstawsdb",
-        "USER": "postgres",
-        "PASSWORD": "hola1234",
-        "HOST": "db-tutorial-1.cz0ca4seei1n.eu-west-3.rds.amazonaws.com",
-        "PORT": "5432",
+        "ENGINE": config('DATABASE_URL'),
+        "NAME": config('DATABASE_NAME'),
+        "USER": config('DATABASE_USER'),
+        "PASSWORD": config('DATABASE_PASSWORD'),
+        "HOST": config('DATABASE_HOST'),
+        "PORT": config('DATABASE_PORT'),
     },
-    'old_default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'Universidad.db',
-    }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'HOST': 'localhost',
-#         'PORT': 5432,
-#         'NAME': 'django-crud',
-#         'USER': 'postgres',
-#         'PASSWORD': ''
-#     }
-# }
 
 
 # Password validation
