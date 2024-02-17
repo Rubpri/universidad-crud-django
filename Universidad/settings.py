@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import dj_database_url
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,13 +25,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+
+DEBUG = 'RENDER' not in os.environ
 
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
-ALLOWED_HOSTS=['django-crud-bootstrap.onrender.com']
+ALLOWED_HOSTS = []
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+
+if RENDER_EXTERNAL_HOSTNAME:    
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -46,6 +56,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,16 +91,22 @@ WSGI_APPLICATION = 'Universidad.wsgi.app'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": config('DATABASE_URL'),
+#         "NAME": config('DATABASE_NAME'),
+#         "USER": config('DATABASE_USER'),
+#         "PASSWORD": config('DATABASE_PASSWORD'),
+#         "HOST": config('DATABASE_HOST'),
+#         "PORT": config('DATABASE_PORT'),
+#     },
+# }
+
+# dj_database_url va a intentar leer DATABASE_URL
 DATABASES = {
-    "default": {
-        "ENGINE": config('DATABASE_URL'),
-        "NAME": config('DATABASE_NAME'),
-        "USER": config('DATABASE_USER'),
-        "PASSWORD": config('DATABASE_PASSWORD'),
-        "HOST": config('DATABASE_HOST'),
-        "PORT": config('DATABASE_PORT'),
-    },
+    'default': dj_database_url.config()
 }
+        
 
 
 # Password validation
@@ -127,6 +144,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+if not DEBUG:    
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
