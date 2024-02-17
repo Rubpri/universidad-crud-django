@@ -1,5 +1,0 @@
-{
-  "devDependencies": {
-    "@ardnt/vercel-python-wsgi": "^1.1.1"
-  }
-}
