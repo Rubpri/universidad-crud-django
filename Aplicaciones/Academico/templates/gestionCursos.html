@@ -23,7 +23,7 @@
             <div class="card-body">
                 <form action="/registrarCurso/" method="POST">{% csrf_token %}
                     <div class="form-gruop py-2">
-                        <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="Código (6 dígitos)" minlength="6" maxlength="6" required>
+                        <input type="number" id="txtCodigo" name="txtCodigo" class="form-control" min="000001" max="999999" placeholder="Código (6 dígitos)" required>
                     </div>
                     <div class="form-gruop py-2">
                         <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" maxlength="50" required>
@@ -35,8 +35,10 @@
                         <button type="submit" class="btn btn-success btn-block text-white w-100">Guardar</button>
                     </div>
                 </form>
+                <p class="mt-2">Límite máximo de 10 cursos · {{ cantidad_cursos }}/10</p>
             </div>
         </div>
+        
 
 
     </div>

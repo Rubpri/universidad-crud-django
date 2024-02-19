@@ -7,20 +7,33 @@ from django.contrib import messages
 
 def home(request):
     cursosListados = Curso.objects.all()
-    return render(request, "gestionCursos.html", {"cursos": cursosListados})
+    cantidad_cursos = len(cursosListados)
+    return render(request, "gestionCursos.html", {"cursos": cursosListados, "cantidad_cursos": cantidad_cursos})
 
 
 def registrarCurso(request):
-    codigo = request.POST['txtCodigo']
-    nombre = request.POST['txtNombre']
-    creditos = request.POST['numCreditos']
 
-    curso = Curso.objects.create(
-        codigo=codigo, nombre=nombre, creditos=creditos)
+    cursosListados = Curso.objects.all()
+    limite_cursos = 10
 
-    messages.success(request, f'¡{codigo} {nombre} añadido!')
+    if len(cursosListados) < limite_cursos:
+        codigo = request.POST['txtCodigo']
+        nombre = request.POST['txtNombre']
+        creditos = request.POST['numCreditos']
 
-    return redirect('/')
+        if Curso.objects.filter(codigo=codigo).exists():
+            messages.error(request, f'El código {codigo} ya está en uso. Por favor, elige otro código.')
+            return redirect('/')
+        else:
+            curso = Curso.objects.create(
+                codigo=codigo, nombre=nombre, creditos=creditos)
+
+            messages.success(request, f'¡{codigo} {nombre} añadido!')
+            return redirect('/')
+
+    else:
+        messages.error(request, '¡Has alcanzado el número máximo de cursos!')
+        return redirect('/')
 
 
 def edicionCurso(request, codigo):
