@@ -15,6 +15,6 @@ Posteriormente podrás borrarlos o editarlos.
 
 ## Capturas 
 
-![Captura1](screenshots/crud1.png)
+![Captura1](crud1.png)
 
-![Captura2](screenshots/crud2.png)
+![Captura2](crud2.png)
