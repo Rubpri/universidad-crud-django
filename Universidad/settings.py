@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from decouple import config
-import dj_database_url
+# import dj_database_url
 import os
 
 
@@ -38,8 +38,8 @@ ALLOWED_HOSTS = []
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 
-if RENDER_EXTERNAL_HOSTNAME:    
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+# if RENDER_EXTERNAL_HOSTNAME:
+#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -91,22 +91,21 @@ WSGI_APPLICATION = 'Universidad.wsgi.app'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": config('DATABASE_URL'),
-#         "NAME": config('DATABASE_NAME'),
-#         "USER": config('DATABASE_USER'),
-#         "PASSWORD": config('DATABASE_PASSWORD'),
-#         "HOST": config('DATABASE_HOST'),
-#         "PORT": config('DATABASE_PORT'),
-#     },
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": 'django.db.backends.postgresql',
+        "NAME": config('DATABASE_NAME'),
+        "USER": config('DATABASE_USER'),
+        "PASSWORD": config('DATABASE_PASSWORD'),
+        "HOST": config('DATABASE_HOST'),
+        "PORT": config('DATABASE_PORT'),
+    },
+}
 
 # dj_database_url va a intentar leer DATABASE_URL
-DATABASES = {
-    'default': dj_database_url.config()
-}
-        
+# DATABASES = {
+#     'default': dj_database_url.config()
+# }
 
 
 # Password validation
@@ -145,7 +144,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-if not DEBUG:    
+if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
