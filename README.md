@@ -11,7 +11,7 @@ Posteriormente podrás borrarlos o editarlos.
 - Bootstrap
 - JavaScript
 
-## Link al live: [https://django-crud-bootstrap.onrender.com/](https://django-crud-bootstrap.onrender.com/)
+## Link al live:
 
 ## Capturas 
 
